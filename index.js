@@ -50,7 +50,7 @@ console.log("====================================");
 // Test your loop with higher numbers and reference an online prime number table to determine the accuracy of your code.
 // Be careful! If you set n to a number too large, your loop could take a long time to process.
 console.log('Part 2: Prime Time');
-let n = parseInt(prompt('Enter a number: ')); 
+let n = 4;//parseInt(prompt('Enter a number: ')); 
 let nextN = n + 1;
 
 while (true) {
@@ -98,3 +98,61 @@ function findNextPrime(n) {
 findNextPrime(4);
 findNextPrime(5);
 findNextPrime(9);
+
+console.log("====================================");
+//TODO: Part 3: Feeling Loopy
+// Your task is to write a script that accomplishes the following:
+// Loop through the characters of a given CSV string.
+// Store each “cell” of data in a variable.
+// When you encounter a comma, move to the next cell.
+// When you encounter the “\r\n” sequence, move to the next “row.”
+// Log each row of data.
+// You do not need to format the data, the following works well.
+// console.log(cell1, cell2, cell3, cell4);
+
+console.log('Part 3: Feeling Loopy');
+
+let csvString = "Index,Mass (kg),Spring 1 (m),Spring 2 (m)\n1,0.00,0.050,0.050\n2,0.49,0.066,0.066\n3,0.98,0.087,0.080\n4,1.47,0.116,0.108\n5,1.96,0.142,0.138\n6,2.45,0.166,0.158\n7,2.94,0.193,0.174\n8,3.43,0.204,0.192\n9,3.92,0.226,0.205\n10,4.41,0.238,0.232";
+
+//without using split method
+function parseCSV2(csvString) {
+    let row = ''
+    for (let i = 0; i < csvString.length || row.length>0; i++) {
+        if (csvString[i] === '\n' || i === csvString.length) {//\' && csvString[i + 1] === '
+            //start cells
+            let cells = [];
+            let cell =''
+            for(let j=0;j<row.length;j++){
+                if(row[j]===','){
+                    cells.push(cell)
+                    cell=''
+                }else{
+                    cell+= row[j];
+                }
+            }
+            if(cell.length>0){
+                cells.push(cell)
+            }
+            //end 
+            console.log(cells)
+            row ='';
+        }else{
+            row+=csvString[i];
+        }
+    }
+}
+console.log("================without split====================")
+parseCSV2(csvString)
+
+//With using split method
+console.log("================using split====================")
+function parseCSV(csvString) {
+    let rows = csvString.split('\n');
+    for (let j = 0; j < rows.length; j++) {
+        let cells = rows[j].split(',');
+        console.log(cells);
+    }
+}
+
+parseCSV(csvString)
+console.log("====================================");
