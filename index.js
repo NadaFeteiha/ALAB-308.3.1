@@ -70,3 +70,31 @@ while (true) {
 
     nextN++;
 }
+
+console.log("================convert To Fun====================");
+
+function findNextPrime(n) {
+    let nextN = n + 1;
+
+    while (true) {
+        let isPrime = true;
+
+        for (let j = 2; j < nextN; j++) {
+            if (nextN % j === 0) {
+                isPrime = false;
+                break;
+            }
+        }
+
+        if (isPrime) {
+            console.log(`The next prime number after ${n} is ${nextN}`);
+            break;
+        }
+
+        nextN++;
+    }
+}
+
+findNextPrime(4);
+findNextPrime(5);
+findNextPrime(9);
